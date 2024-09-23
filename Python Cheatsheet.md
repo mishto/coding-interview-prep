@@ -1,6 +1,6 @@
 # Cheat sheet for Python interviews
 
-## Strings
+# Strings
 Essential methods for `s: str`.
 1. `s.find(other, [start, [end]]) -> int` finds the beginning index of the other string (or -1)
 1. `s.split([separator]) -> List[str]` splits the string based on the separator:
@@ -9,7 +9,7 @@ Essential methods for `s: str`.
 1. `s.join(List[str]) -> str` joins the list of strings by the string `s`.
 1. `s.count()`
 
-### Examples
+**Examples**
 ```python
 s = " Hello  world"
 
@@ -18,14 +18,14 @@ assert s.split() == ["Hello", "world"]
 assert s.split(" ") == ["", "Hello", "", "world"]
 ```
 
-### Gotchas
+**Gotchas**
 1. Strings in Python are immutable.
 1. Behavior of `s.split()` vs `s.split(" ")` is inconsistent.
 
-### Patterns
+**Patterns**
 1. Use `List[str]` and `"".join(lst)` instead of string buffer.
 
-## Heaps
+# Heaps
 
 1.  By default Python heaps are **min-heaps**.
 1. `import heapq` from the standard library
@@ -63,7 +63,7 @@ ordered = [heapq.heappop(max_heap)[1] for _ in range(5)]
 assert ordered == [5, 4, 3, 2, 1]
 ```
 
-## Lists
+# Lists
 1. Initialize with `[]` or `list()`.
 1. `lst.append(value)` appends a list in place and extends the underlying array if needed.
 1. `lst.extend(iterable)` appends all the values of iterable.
@@ -98,7 +98,7 @@ lst = ["Alice", "Bob"]
 assert [(index, name) for index, name in enumerate(lst)] == [(0, "Alice"), (1, "Bob")]
 ```
 
-## Sets
+# Sets
 1. Initialize with `set([iterable])` or `{1, 2, 3}`
 1. `s.add(value)`
 1. `s.remove(value)` - raises error when value is not found.
@@ -125,7 +125,7 @@ assert set(lst) == {3, 2, 1, 4}
 1. User defined classes can be used but must implement __hash__ and __eq__.
 1. Use tuples for quick implementations.
 
-## Deque
+# Deque
 1. `from collections import deque`
 1. `deque([iterable, [maxlen]])` - initialize from a list or other iterable
 1. `q.append(value)` - append an element at the end (right) of the queue
@@ -161,7 +161,7 @@ assert fifo == [1, 2, 3]
 1. Need to use `popleft` to have expected queue FIFO behavior.
 2. `left` versions of the methods are with one word, lower case: `popleft`, `appendleft`, etc.
 
-## Dictionaries
+# Dictionaries
 1. Initialize with `dict()` or `{}`.
 1. `d[key]` - raises error on key not found.
 1. `d.get(key, "default")` returns "default" when key is not present.
@@ -177,7 +177,7 @@ assert fifo == [1, 2, 3]
 1. keys and values look like sets but they have a different type and need to be converted to sets / lists if needed.
 
 
-## Bisect
+# Bisect
 Useful for binary search within a list.
 
 1. `import bisect`
@@ -212,7 +212,7 @@ assert binary_search(ordered, 4) == 1
 assert binary_search(ordered, 0) == -1
 ```
 
-## Random
+# Random
 1. `import random`
 1. `random.randomint(first, last) -> value` - a random integer between (and including) first and last
 1. `random.uniform(first, last)-> value` - a random float between (and including) first and last
