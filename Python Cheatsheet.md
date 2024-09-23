@@ -4,8 +4,8 @@
 Essential methods for `s: str`.
 1. `s.find(other, [start, [end]]) -> int` finds the beginning index of the other string (or -1)
 1. `s.split([separator]) -> List[str]` splits the string based on the separator:
-  * when no separator is given, separates by "spaces"; result contains no empty string tokens.
-  * when separator is given, result might contain empty string tokens.
+    - when no separator is given, separates by "spaces"; result contains no empty string tokens.
+    - when separator is given, result might contain empty string tokens.
 1. `s.join(List[str]) -> str` joins the list of strings by the string `s`.
 1. `s.count()`
 
@@ -47,11 +47,11 @@ ordered = [heapq.heappop(heap) for _ in range(len(heap))]
 assert ordered == [1, 2, 3, 4, 5]
 ```
 
-### Heap gotchas
+**Heap gotchas**
 1. All operations on the heap are done in place on the underlying list.
 2. There is no peek operation. Just read the first element of the heap.
 
-### Heap patterns
+**Heap patterns**
 To sort by arbitrary rules use tuples:
 ```python
 import heapq
@@ -70,13 +70,13 @@ assert ordered == [5, 4, 3, 2, 1]
 1. `lst.pop() -> value` deletes the last element and returns it.
 1. `lst.reverse()` reverses the list in place.
 1. `lst.sort([key: lambda], reverse=False)` 
-  * use the key like `lst.sort(lambda person: person.age)` to change the sort comparison.
+    - use the key like `lst.sort(lambda person: person.age)` to change the sort comparison.
 1. `lst.index(value)` similar to `str.find`
 
-### Gotchas
+**Gotchas**
 1. Lists are mutable; append, extend, reverse, etc. methods don't return new lists.
 
-### Patterns
+**Patterns**
 
 ```python
 # initialize a list with repeated elements:
@@ -105,13 +105,13 @@ assert [(index, name) for index, name in enumerate(lst)] == [(0, "Alice"), (1, "
 1. `s.discard(value)` - does not raise error.
 1. `s.pop() -> value` - returns and discards an arbitrary element.
 1. Set operations:
-  * `a - b`
-  * `a | b` - union 
-  * `a & b` - intersection
-  * `a ^ b` - XOR
-  * `a == b` - compare sets for equality
+    - `a - b`
+    - `a | b` - union 
+    -  `a & b` - intersection
+    -  `a ^ b` - XOR
+    -  `a == b` - compare sets for equality
 
-### Patterns
+**Patterns**
 ```python
 lst = [1, 2, 1, 2, 1, 3, 2, 4]
 dedup = list(set(lst))
@@ -120,7 +120,7 @@ assert len(dedup) == 4
 assert set(lst) == {3, 2, 1, 4}
 ```
 
-### Gotchas
+**Gotchas**
 1. Elements in sets must be hashable and cannot be lists, sets or dictionaries.
 1. User defined classes can be used but must implement __hash__ and __eq__.
 1. Use tuples for quick implementations.
@@ -134,7 +134,7 @@ assert set(lst) == {3, 2, 1, 4}
 1. `q.pop()` - stack pop from the end of the queue (LIFO)
 1. `q.popleft()` - queue pop from the beginning of the queue (FIFO)
 
-### Patterns
+**Patterns**
 ```python
 from collections import deque
 
@@ -157,7 +157,7 @@ fifo = [q.popleft() for _ in range(3)]
 assert fifo == [1, 2, 3]
 ```
 
-### Gotchas
+**Gotchas**
 1. Need to use `popleft` to have expected queue FIFO behavior.
 2. `left` versions of the methods are with one word, lower case: `popleft`, `appendleft`, etc.
 
@@ -169,10 +169,10 @@ assert fifo == [1, 2, 3]
 1. `d.pop(key, [default])` - returns and deletes the key; unless default is specified raises error on key not found.
 1. `key in d` - test whether a key exists in the dictionary
 1. `d.keys()` - a "view" of the dictionary keys; gets dynamically updated.
-  * supported operations: iterate, membership tests, length.
+    -  supported operations: iterate, membership tests, length.
 1. `d.values()` - similar to keys but for values.
 
-### Gotchas
+**Gotchas**
 1. the delete syntax is non standard; use pop for more intuitve syntax.
 1. keys and values look like sets but they have a different type and need to be converted to sets / lists if needed.
 
@@ -182,11 +182,11 @@ Useful for binary search within a list.
 
 1. `import bisect`
 1. `bisect.bisect_left(ordered_lst, value)`
-  * finds the index where value would be inserted in order.
-  * if value already exists in the list, this is the index of the first occurence.
+    -  finds the index where value would be inserted in order.
+    -  if value already exists in the list, this is the index of the first occurence.
 1. `bisect.bisect_right(ordered_lst, value)`
 
-### Examples
+**Examples**
 ```python
 import bisect
 ordered = [1, 4, 6, 9, 10]
@@ -219,14 +219,14 @@ assert binary_search(ordered, 0) == -1
 1. `random.random() -> value` - a random float between 0.0 and 1.0
 1. `random.shuffle(lst)` - shuffles the list in a random order
 1. `random.sample(lst, k) -> List[values]`
-  * returns a list of k unique values form lst
-  * raises error on invalid k
+    -  returns a list of k unique values form lst
+    -  raises error on invalid k
 1. `random.choices(lst, k) -> List[values]`
-  * returns a list of k values with duplicates
+    -  returns a list of k values with duplicates
 1. `random.choices(lst, weights=w, k=1)`
-  * returns a list of k values with duplicates weighted by weights
+    -  returns a list of k values with duplicates weighted by weights
 
-### Examples
+**Examples**
 Selecting an element from a list with weights.
 
 ```python
