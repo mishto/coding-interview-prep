@@ -8,6 +8,7 @@ Essential methods for `s: str`.
     - when separator is given, result might contain empty string tokens.
 1. `s.join(List[str]) -> str` joins the list of strings by the string `s`.
 1. `s.count()`
+1. `s[x:y]` substring starting at x and ending at y-1
 
 **Examples**
 ```python
@@ -16,14 +17,24 @@ s = " Hello  world"
 assert s.find("Hello") == 1
 assert s.split() == ["Hello", "world"]
 assert s.split(" ") == ["", "Hello", "", "world"]
+
+# trick to reverse a string
+assert "foo"[::-1] == "oof"
 ```
 
 **Gotchas**
 1. Strings in Python are immutable.
 1. Behavior of `s.split()` vs `s.split(" ")` is inconsistent.
+1. Splitting by a list of strings requires regular expressions:
+```python
+import re
+words = re.split(r"[ !]+", "  Hello World!!")
+assert words == ["", "Hello", "World", ""]
+```
 
 **Patterns**
 1. Use `List[str]` and `"".join(lst)` instead of string buffer.
+2. Reverse a string using `s[::-1]` syntax.
 
 # Heaps
 
@@ -107,9 +118,10 @@ assert [(index, name) for index, name in enumerate(lst)] == [(0, "Alice"), (1, "
 1. Set operations:
     - `a - b`
     - `a | b` - union 
-    -  `a & b` - intersection
-    -  `a ^ b` - XOR
-    -  `a == b` - compare sets for equality
+    - `a & b` - intersection
+    - `a ^ b` - XOR
+    - `a == b` - compare sets for equality
+    - `a < b` - inclusion
 
 **Patterns**
 ```python
@@ -147,7 +159,7 @@ q.append(3)
 lifo = [q.pop() for _ in range(3)]
 assert lifo == [3, 2, 1]
 
-# FIFO stack processing
+# FIFO queue processing
 q = deque()
 q.append(1)
 q.append(2)
