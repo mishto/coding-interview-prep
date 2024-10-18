@@ -81,8 +81,8 @@ assert ordered == [5, 4, 3, 2, 1]
 1. `lst.pop() -> value` deletes the last element and returns it.
 1. `lst.reverse()` reverses the list in place.
 1. `lst.sort([key: lambda], reverse=False)` 
-    - use the key like `lst.sort(lambda person: person.age)` to change the sort comparison.
-1. `lst.index(value)` similar to `str.find`
+    - use the key like `lst.sort(key = lambda person: person.age)` to change the sort comparison.
+1. `lst.index(value)` similar to `str.find` but it raises `ValueError` on missing element.
 
 **Gotchas**
 1. Lists are mutable; append, extend, reverse, etc. methods don't return new lists.
