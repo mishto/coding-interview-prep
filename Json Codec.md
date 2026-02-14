@@ -24,7 +24,7 @@ decoded_dict = {"1": "foo", "2": "bar", "3": [123, 234]}
 assert json.loads(json_dict) == decoded_dict
 ```
 
-## Using Pydantic with Dataclass
+## Using Pydantic
 
 For user defined types the json encoding and decoding doesn't work out of the box.
 However, using the Pydantic base models it is possible to encode and decode

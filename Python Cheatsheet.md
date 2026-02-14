@@ -25,16 +25,29 @@ assert "foo"[::-1] == "oof"
 **Gotchas**
 1. Strings in Python are immutable.
 1. Behavior of `s.split()` vs `s.split(" ")` is inconsistent.
-1. Splitting by a list of strings requires regular expressions:
-```python
-import re
-words = re.split(r"[ !]+", "  Hello World!!")
-assert words == ["", "Hello", "World", ""]
-```
 
 **Patterns**
 1. Use `List[str]` and `"".join(lst)` instead of string buffer.
 2. Reverse a string using `s[::-1]` syntax.
+
+# Regular Expressions
+1. `import re`
+1. Splitting a string `re.split(r"[*/+-]", "term1+term2-term3") -> ["term1", "term2", "term3"]` 
+1. Find the next pattern `re.findall(r"[*/+-]", "a + b - c)") -> ["+", "-"]`
+1. Escape characters `re.escape("*/+-") -> "\*/\+\-"`
+
+```python
+import re
+terms = re.split(r"[%s]" % re.escape(" */-+"), "41 + 20 / 4")
+terms = list(filter(lambda x: len(x) > 0, terms))
+assert terms == ["41", "20", "4"]
+
+terms = re.findall(r"[\d]+", "41 + 20 / 4")
+assert terms == ["41", "20", "4"]
+
+ops = re.findall(r"[%s]" % re.escape("*/-+"), "41 + 20 / 4")
+assert ops == ["+", "/"]
+```
 
 # Heaps
 
@@ -256,4 +269,39 @@ for i in range(1000):
 
 assert count_100s > 400
 assert count_100s < 600
+```
+
+# Bytes
+Bytes are immutable arrays of byte.
+
+```python
+import pytest
+
+b = b"Hello World"
+
+assert b[0] == ord('H')
+
+with pytest.raises(TypeError) as err:
+    b[0] = "G"
+
+assert "does not support item assignment" in str(err)
+```
+
+# Sorted Containers
+`sortedcontainers` is an actively maintained library written in Python.
+It is much faster than the similar `sortedcollection` library event thought the latter is written in C.
+
+```python
+from sortedcontainers import SortedList, SortedDict, SortedSet
+
+sl = SortedList([3, 1, 2])
+
+assert [x for x in sl] == [1, 2, 3]
+assert sl.bisect_left(2) == 1
+
+sd = SortedDict()
+sd[2] = 'b'
+sd[1] = 'a'
+sd[3] = 'c'
+assert [x for x in sd.keys()] == [1, 2,3]
 ```
